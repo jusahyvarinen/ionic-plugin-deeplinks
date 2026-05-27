@@ -6,11 +6,27 @@
 
 - (void)pluginInitialize {
   _handlers = [[NSMutableArray alloc] init];
+  // cordova-ios 8: application:openURL:options: is no longer called on
+  // Scene-based apps. Listen to CDVPluginHandleOpenURLNotification, which
+  // CDVSceneDelegate posts on every scene:openURLContexts:.
+  NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+  [center addObserver:self
+             selector:@selector(handleOpenURLNotification:)
+                 name:CDVPluginHandleOpenURLNotification
+               object:nil];
+}
+
+- (void)handleOpenURLNotification:(NSNotification*)notification {
+  id obj = notification.object;
+  if ([obj isKindOfClass:[NSURL class]]) {
+    [self handleLink:(NSURL*)obj];
+  }
 }
 
 /* ------------------------------------------------------------- */
 
 - (void)onAppTerminate {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
   _handlers = nil;
   [super onAppTerminate];
 }

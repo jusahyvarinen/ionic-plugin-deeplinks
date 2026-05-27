@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="ionic-plugin-deeplinks" version="1.0.22">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="ionic-plugin-deeplinks" version="1.0.25">
 	<name>Ionic Deeplink Plugin</name>
 	<description>Ionic Deeplink Plugin</description>
 	<license>MIT</license>
@@ -120,6 +120,7 @@
 		<source-file src="src/ios/AppDelegate+IonicDeeplink.m" />
 		<header-file src="src/ios/IonicDeeplinkPlugin.h" />
 		<source-file src="src/ios/IonicDeeplinkPlugin.m" />
+		<source-file src="src/ios/CDVSceneDelegate+UniversalLinks.m" />
 	</platform>
 
 	<platform name="browser">
